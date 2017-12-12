@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return a / b;
     }
 
+    private double potencia(double a, double b) {
+        return Math.pow(a, b);
+    }
+
     private void showMessage(Context context) {
         Toast.makeText(context, "Debes introducir números", Toast.LENGTH_SHORT).show();
     }
