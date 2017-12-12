@@ -2,8 +2,10 @@ package uva.inf.ivagonz.mycalculator;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,21 +71,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String txt_1 = et_num1.getText().toString();
         String txt_2 = et_num2.getText().toString();
+
+        LayoutInflater li = LayoutInflater.from(MainActivity.this);
+        View ly_dialog = li.inflate(R.layout.dialog_layout, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                MainActivity.this);
+
+        // set prompts.xml to alertdialog builder
+        alertDialogBuilder.setView(ly_dialog);
+        // set dialog message
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // get user input and set it to result
+                                // edit text
+                                dialog.cancel();
+                            }
+                        })
+                .setNegativeButton("Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        final TextView tv_resul_dialog = (TextView) ly_dialog
+                .findViewById(R.id.tv_resul_dialog);
+
+
         try {
             switch (id) {
                 case R.id.btn_sumar:
+                    tv_resul_dialog.setText(String.valueOf(sumar(Double.parseDouble(txt_1), Double.parseDouble(txt_2))));
                     tv_resultado.setText(String.valueOf(sumar(Double.parseDouble(txt_1), Double.parseDouble(txt_2))));
                     break;
                 case R.id.btn_restar:
+                    tv_resul_dialog.setText(String.valueOf(restar(Double.parseDouble(txt_1), Double.parseDouble(txt_2))));
                     tv_resultado.setText(String.valueOf(restar(Double.parseDouble(txt_1), Double.parseDouble(txt_2))));
                     break;
                 case R.id.btn_multiplicar:
+                    tv_resul_dialog.setText(String.valueOf(multiplicar(Double.parseDouble(txt_1), Double.parseDouble(txt_2))));
                     tv_resultado.setText(String.valueOf(multiplicar(Double.parseDouble(txt_1), Double.parseDouble(txt_2))));
                     break;
                 case R.id.btn_dividir:
+                    tv_resul_dialog.setText(String.valueOf(dividir(Double.parseDouble(txt_1), Double.parseDouble(txt_2))));
                     tv_resultado.setText(String.valueOf(dividir(Double.parseDouble(txt_1), Double.parseDouble(txt_2))));
                     break;
             }
+            // show it
+            alertDialog.show();
         } catch (NumberFormatException e) {
             showMessage(MainActivity.this);
         }
