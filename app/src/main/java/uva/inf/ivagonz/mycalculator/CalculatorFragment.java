@@ -14,13 +14,16 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
-
+/** Calculadora básica para Hour of Code 2019. En esta ocasión contamos con una matriz de botones
+ *  con la que el usuario podrá interactuar con la aplicación. Aplicación basada en (ver enlace).
+ * @author ivan
+ * @see <a href="https://www.androidauthority.com/build-a-calculator-app-721910/">Autor original</a>
+ */
 public class CalculatorFragment extends Fragment implements View.OnClickListener {
 
     private View calculatorFragment;
+    private Calculadora calculadora;
 
-    private double valueOne = Double.NaN;
-    private double valueTwo;
 
     private static final char ADDITION = '+';
     private static final char SUBTRACTION = '-';
@@ -48,6 +51,7 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
         // Inflate the layout for this fragment
         calculatorFragment = inflater.inflate(R.layout.ly_fragment_calculator, container, false);
         decimalFormat = new DecimalFormat("#.######");
+        calculadora = new Calculadora();
 
         et_number = (EditText) calculatorFragment.findViewById(R.id.et_number);
         tv_info = (TextView) calculatorFragment.findViewById(R.id.infoTextView);
@@ -116,8 +120,8 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
             case R.id.buttonEqual:
                 computeCalculation();
                 tv_info.setText(tv_info.getText().toString() +
-                        decimalFormat.format(valueTwo) + " = " + decimalFormat.format(valueOne));
-                valueOne = Double.NaN;
+                        decimalFormat.format(calculadora.getB()) + " = " + decimalFormat.format(calculadora.getA()));
+                calculadora.setA(Double.NaN);
                 CURRENT_ACTION = '0';
                 break;
             case R.id.buttonClear:
@@ -125,8 +129,8 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
                     String currentText = et_number.getText().toString();
                     et_number.setText(currentText.subSequence(0, currentText.length() - 1));
                 } else {
-                    valueOne = Double.NaN;
-                    valueTwo = Double.NaN;
+                    calculadora.setA(Double.NaN);
+                    calculadora.setB(Double.NaN);
                     et_number.setText("");
                     tv_info.setText("");
                 }
@@ -142,7 +146,7 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
 
     private void setTextViewWithButton(TextView tv, int id) {
         Button btn = (Button) calculatorFragment.findViewById(id);
-        tv.setText(decimalFormat.format(valueOne) + btn.getText().toString());
+        tv.setText(decimalFormat.format(calculadora.getA()) + btn.getText().toString());
     }
 
     private void checkCalculation(int id) {
@@ -167,21 +171,21 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
     }
 
     private void computeCalculation() {
-        if (!Double.isNaN(valueOne)) {
-            valueTwo = Double.parseDouble(et_number.getText().toString());
+        if (!Double.isNaN(calculadora.getA())) {
+            calculadora.setB(Double.parseDouble(et_number.getText().toString()));
             et_number.setText(null);
 
             if (CURRENT_ACTION == ADDITION)
-                valueOne = this.valueOne + valueTwo;
+                calculadora.setA(calculadora.sumar(calculadora.getA(),calculadora.getB()));
             else if (CURRENT_ACTION == SUBTRACTION)
-                valueOne = this.valueOne - valueTwo;
+                calculadora.setA(calculadora.restar(calculadora.getA(),calculadora.getB()));
             else if (CURRENT_ACTION == MULTIPLICATION)
-                valueOne = this.valueOne * valueTwo;
+                calculadora.setA(calculadora.multiplicar(calculadora.getA(),calculadora.getB()));
             else if (CURRENT_ACTION == DIVISION)
-                valueOne = this.valueOne / valueTwo;
+                calculadora.setA(calculadora.dividir(calculadora.getA(),calculadora.getB()));
         } else {
             try {
-                valueOne = Double.parseDouble(et_number.getText().toString());
+                calculadora.setA(Double.parseDouble(et_number.getText().toString()));
             } catch (Exception e) {
             }
         }
