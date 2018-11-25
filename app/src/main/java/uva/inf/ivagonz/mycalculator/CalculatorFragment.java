@@ -14,8 +14,10 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
-/** Calculadora básica para Hour of Code 2019. En esta ocasión contamos con una matriz de botones
- *  con la que el usuario podrá interactuar con la aplicación. Aplicación basada en (ver enlace).
+/**
+ * Calculadora básica para Hour of Code 2019. En esta ocasión contamos con una matriz de botones
+ * con la que el usuario podrá interactuar con la aplicación. Aplicación basada en (ver enlace).
+ *
  * @author ivan
  * @see <a href="https://www.androidauthority.com/build-a-calculator-app-721910/">Autor original</a>
  */
@@ -114,13 +116,13 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
             case R.id.buttonAdd:
             case R.id.buttonSubtract:
             case R.id.buttonMultiply:
-            case R.id.btn_dividir:
+            case R.id.buttonDivide:
                 checkCalculation(id);
                 break;
             case R.id.buttonEqual:
                 computeCalculation();
                 tv_info.setText(tv_info.getText().toString() +
-                        decimalFormat.format(calculadora.getB()) + " = " + decimalFormat.format(calculadora.getA()));
+                        decimalFormat.format(calculadora.getB()) + " = " + decimalFormat.format(calculadora.getResult()));
                 calculadora.setA(Double.NaN);
                 CURRENT_ACTION = '0';
                 break;
@@ -150,7 +152,6 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
     }
 
     private void checkCalculation(int id) {
-        computeCalculation();
         switch (id) {
             case R.id.buttonAdd:
                 CURRENT_ACTION = ADDITION;
@@ -165,6 +166,7 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
                 CURRENT_ACTION = DIVISION;
                 break;
         }
+        computeCalculation();
         setTextViewWithButton(tv_info, id);
         et_number.setText(null);
 
@@ -172,17 +174,20 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
 
     private void computeCalculation() {
         if (!Double.isNaN(calculadora.getA())) {
+            Toast.makeText(CalculatorFragment.this.getActivity(), String.valueOf(calculadora.getA()), Toast.LENGTH_SHORT).show();
             calculadora.setB(Double.parseDouble(et_number.getText().toString()));
             et_number.setText(null);
-
+            double result = 0;
             if (CURRENT_ACTION == ADDITION)
-                calculadora.setA(calculadora.sumar(calculadora.getA(),calculadora.getB()));
+                result = calculadora.sumar(calculadora.getA(), calculadora.getB());
             else if (CURRENT_ACTION == SUBTRACTION)
-                calculadora.setA(calculadora.restar(calculadora.getA(),calculadora.getB()));
+                result = calculadora.restar(calculadora.getA(), calculadora.getB());
             else if (CURRENT_ACTION == MULTIPLICATION)
-                calculadora.setA(calculadora.multiplicar(calculadora.getA(),calculadora.getB()));
+                result = calculadora.multiplicar(calculadora.getA(), calculadora.getB());
             else if (CURRENT_ACTION == DIVISION)
-                calculadora.setA(calculadora.dividir(calculadora.getA(),calculadora.getB()));
+                result = calculadora.dividir(calculadora.getA(), calculadora.getB());
+
+            calculadora.setResult(result);
         } else {
             try {
                 calculadora.setA(Double.parseDouble(et_number.getText().toString()));

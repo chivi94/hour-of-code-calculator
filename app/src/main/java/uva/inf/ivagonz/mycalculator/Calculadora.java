@@ -7,10 +7,12 @@ public class Calculadora{
 
     private double a;
     private double b;
+    private double result;
 
 	public Calculadora(){
 	    a = Double.NaN;
 	    b = 0;
+	    result = Double.NaN;
     }
 
     public double sumar(double a, double b) {
@@ -43,5 +45,13 @@ public class Calculadora{
 
     public void setB(double b) {
         this.b = b;
+    }
+
+    public double getResult() {
+        return result;
+    }
+
+    public void setResult(double result) {
+        this.result = result;
     }
 }
