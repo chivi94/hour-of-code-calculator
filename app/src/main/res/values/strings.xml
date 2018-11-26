@@ -9,6 +9,10 @@
     <string name="tv_simpleCalculator_num2">Número 2:</string>
     <string name="et_simpleCalculator_operando2">Introduzca segundo número</string>
     <string name="tv_simpleCalculator_infoResultado">Resultado:</string>
+    <string name="toast_simpleCalculator_faltaNum">Falta un operando por introducir</string>
+    <string name="dialog_title">Resultado</string>
+    <string name="dialog_message">Resultado de la operación: </string>
+    <string name="dialog_possitiveButton">Vale</string>
     <string name="et_fragmentCalculator_inputNumber">Introduzca un número</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_calculator">CalculatorActivity</string>
