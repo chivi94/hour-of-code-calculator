@@ -24,7 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="@string/et_simpleCalculator_operando1" />
+            android:hint="@string/et_simpleCalculator_operando1"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -46,7 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="@string/et_simpleCalculator_operando2" />
+            android:hint="@string/et_simpleCalculator_operando2"
+            android:inputType="number"/>
 
     </LinearLayout>
 

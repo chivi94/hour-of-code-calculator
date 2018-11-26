@@ -32,7 +32,7 @@ public class ComplexCalculatorFragment extends Fragment implements View.OnClickL
     private static final char DIVISION = '/';
 
     private char CURRENT_ACTION;
-    private DecimalFormat decimalFormat;
+
 
     private Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9;
     private Button btn_add, btn_substract, btn_multiply, btn_divide, btn_clear, btn_dot, btn_equal;
@@ -51,7 +51,6 @@ public class ComplexCalculatorFragment extends Fragment implements View.OnClickL
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         calculatorFragment = inflater.inflate(R.layout.ly_fragment_complexcalculator, container, false);
-        decimalFormat = new DecimalFormat("#.######");
         calculadora = new Calculadora();
 
         et_number = (EditText) calculatorFragment.findViewById(R.id.et_number);
@@ -121,7 +120,7 @@ public class ComplexCalculatorFragment extends Fragment implements View.OnClickL
             case R.id.buttonEqual:
                 computeCalculation();
                 tv_info.setText(tv_info.getText().toString() +
-                        decimalFormat.format(calculadora.getB()) + " = " + decimalFormat.format(calculadora.getResult()));
+                        calculadora.getDecimalFormat().format(calculadora.getB()) + " = " + calculadora.getDecimalFormat().format(calculadora.getResult()));
                 calculadora.setA(Double.NaN);
                 CURRENT_ACTION = '0';
                 break;
@@ -147,7 +146,7 @@ public class ComplexCalculatorFragment extends Fragment implements View.OnClickL
 
     private void setTextViewWithButton(TextView tv, int id) {
         Button btn = (Button) calculatorFragment.findViewById(id);
-        tv.setText(decimalFormat.format(calculadora.getA()) + btn.getText().toString());
+        tv.setText(calculadora.getDecimalFormat().format(calculadora.getA()) + btn.getText().toString());
     }
 
     private void checkCalculation(int id) {

@@ -1,5 +1,6 @@
 package uva.inf.ivagonz.mycalculator;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
@@ -8,11 +9,13 @@ public class Calculadora{
     private double a;
     private double b;
     private double result;
+    private DecimalFormat decimalFormat;
 
 	public Calculadora(){
 	    a = Double.NaN;
 	    b = 0;
 	    result = Double.NaN;
+        decimalFormat = new DecimalFormat("#.######");
     }
 
     public double sumar(double a, double b) {
@@ -53,5 +56,9 @@ public class Calculadora{
 
     public void setResult(double result) {
         this.result = result;
+    }
+
+    public DecimalFormat getDecimalFormat() {
+        return decimalFormat;
     }
 }
