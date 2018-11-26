@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">MyCalculator</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_mainActivity_info">Elija un tipo de calculadora</string>
     <string name="et_fragmentCalculator_inputNumber">Introduzca un número</string>
+    <string name="btn_mainActivity_simpleCalculator">Calculadora Simple</string>
+    <string name="btn_mainActivity_complexCalculator">Calculadora Compleja</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_calculator">CalculatorActivity</string>
 </resources>

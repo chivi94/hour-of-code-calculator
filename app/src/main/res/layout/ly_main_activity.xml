@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_mainActivity_info"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/fab_margin"/>
+    <Button
+        android:id="@+id/btn_mainActivity_simpleCalculator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="@string/btn_mainActivity_simpleCalculator"/>
+    <Button
+        android:id="@+id/btn_mainActivity_complexCalculator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:text="@string/btn_mainActivity_complexCalculator"/>
+
+</LinearLayout>

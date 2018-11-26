@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +20,7 @@ import java.text.DecimalFormat;
  * @author ivan
  * @see <a href="https://www.androidauthority.com/build-a-calculator-app-721910/">Autor original</a>
  */
-public class CalculatorFragment extends Fragment implements View.OnClickListener {
+public class ComplexCalculatorFragment extends Fragment implements View.OnClickListener {
 
     private View calculatorFragment;
     private Calculadora calculadora;
@@ -42,7 +41,7 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
     private TextView tv_info;
 
 
-    public CalculatorFragment() {
+    public ComplexCalculatorFragment() {
         // Required empty public constructor
     }
 
@@ -174,7 +173,7 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
 
     private void computeCalculation() {
         if (!Double.isNaN(calculadora.getA())) {
-            Toast.makeText(CalculatorFragment.this.getActivity(), String.valueOf(calculadora.getA()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ComplexCalculatorFragment.this.getActivity(), String.valueOf(calculadora.getA()), Toast.LENGTH_SHORT).show();
             calculadora.setB(Double.parseDouble(et_number.getText().toString()));
             et_number.setText(null);
             double result = 0;
