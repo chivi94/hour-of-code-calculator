@@ -50,7 +50,7 @@ public class ComplexCalculatorFragment extends Fragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        calculatorFragment = inflater.inflate(R.layout.ly_fragment_calculator, container, false);
+        calculatorFragment = inflater.inflate(R.layout.ly_fragment_complexcalculator, container, false);
         decimalFormat = new DecimalFormat("#.######");
         calculadora = new Calculadora();
 
